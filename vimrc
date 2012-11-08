@@ -1,17 +1,8 @@
-" General Settings
-
+" System
 set nocompatible	   " not compatible with the old-fashion vi mode
-set bs=2		       " allow backspacing over everything in insert mode
-set history=50		   " keep 50 lines of command line history
-set ruler	           " show the cursor position all the time
-set autoread           " auto read when file is changed from outside
 filetype off           " necessary to make ftdetect work on Linux
 
-syntax on
-filetype on            " Enable filetype detection
-filetype indent on     " Enable filetype-specific indenting
-filetype plugin on     " Enable filetype-specific plugins
-
+" vundle settings
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -19,45 +10,93 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-Bundle 'Syntastic' 
+
+" ==== General plugins ====
+
 "uber awesome syntax and errors highlighter
-Bundle 'altercation/vim-colors-solarized' 
-" T-H-E colorscheme
-
-"Bundle 'https://github.com/tpope/vim-fugitive' 
-"So awesome, it should be illegal
-
-Bundle 'pyflakes.vim'
-Bundle 'Lokaltog/vim-powerline.git'
+Bundle 'Syntastic'                          
 Bundle 'The-NERD-tree'
+Bundle 'The-NERD-Commenter'
 Bundle 'snipMate'
+Bundle 'vim-indent-object'
+Bundle 'SuperTab'
+Bundle 'sessionman.vim'
+Bundle 'YankRing.vim'
+
+" T-H-E colorscheme
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'c9s/colorselector.vim'          
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'jeetsukumaran/vim-buffergator'
+
+
+" ==== python plugins ====
+Bundle 'pyflakes.vim'
+
+
+" ==== HTML plugins ====
+Bundle "lepture/vim-css"
+Bundle "lepture/vim-jinja"
+Bundle "mattn/zencoding-vim"
+Bundle "wavded/vim-stylus"
+Bundle "lepture/vim-javascript"
+
+
+" General Settings
+set bs=2		       " allow backspacing over everything in insert mode
+set history=50		   " keep 50 lines of command line history
+set ruler	           " show the cursor position all the time
+set autoread           " auto read when file is changed from outside
+set autochdir
+set nu
+set mouse=a
+
+syntax on
+filetype on            " Enable filetype detection
+filetype indent on     " Enable filetype-specific indenting
+filetype plugin on     " Enable filetype-specific plugins
+
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
-
-
-set hlsearch		" search highlighting
-
-set nu
-set t_Co=256
 
 if has("gui_running")	" GUI color and font settings
     set guifont=Osaka-Mono:h20
     set background=dark 
     set t_Co=256          " 256 color mode
     set cursorline        " highlight current line
-    "colors solarized
+    colors desert
     highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 else
     " terminal color settings
     "colors vgod
 endif
 
+" Keybinding
+" set leader to ,
+let mapleader=","
+let g:mapleader=","
+
+" ,/ turn off search highlighting
+nmap <leader>/ :nohl<CR>
+
+nmap <leader>f :NERDTree<CR>
+
+nmap <C-tab> :bn<CR>
+imap <C-tab> <ESC>:bn<CR>i
+
 " disable sound on errors
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+
+" folding settings
+set foldenable
+set foldmethod=marker
+nnoremap <space> za
 
 " search settings {
 set hlsearch		" search highlighting
