@@ -50,4 +50,5 @@ function chpwd() {
 
 alias gk='gitk --all 2> /dev/null &'
 alias tmux="TERM=screen-256color-bce tmux"
-
+alias vi="mvim -v"
+alias vim="mvim -v"
