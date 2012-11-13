@@ -1,20 +1,20 @@
 [user]
-    name = yyken
-    email = yyken@outlook.com
+	name = yyken
+	email = yyken@outlook.com
 
 [core]
-    excludesfile = /Users/kenyeh/.gitignore_global
+	excludesfile = /Users/kenyeh/.gitignore_global
     editor = /usr/bin/vim
     pager = less -FRSX
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path = 
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 
 [mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 
 [color]
     diff = auto
