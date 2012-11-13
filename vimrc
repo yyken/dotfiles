@@ -92,6 +92,10 @@ else
 endif
 
 " Keybinding
+
+map :w  :up
+map :q  :confirm q
+
 " set leader to ,
 let mapleader=","
 let g:mapleader=","
@@ -102,8 +106,10 @@ nmap <leader>/ :nohl<CR>
 nmap <silent> <leader>n :NERDTreeToggle<CR>
 " nnoremap <silent> <leader>ff :call g:Jsbeautify()<CR>
 
+"for multiple indentations
 vnoremap < <gv
 vnoremap > >gv
+
 nmap <C-tab> :bn<CR>
 imap <C-tab> <ESC>:bn<CR>i
 
