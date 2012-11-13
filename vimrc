@@ -10,41 +10,58 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
+"--------------
+" Color Scheme
+"--------------
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tomasr/molokai'
 
-" ==== General plugins ====
-
-"uber awesome syntax and errors highlighter
-Bundle 'Syntastic'                          
-Bundle 'The-NERD-tree'
-Bundle 'The-NERD-Commenter'
-Bundle 'snipMate'
-Bundle 'vim-indent-object'
-Bundle 'SuperTab'
+"--------------
+" IDE features
+"--------------
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+"Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'scrooloose/syntastic'
 Bundle 'sessionman.vim'
 Bundle 'YankRing.vim'
-
-" T-H-E colorscheme
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'c9s/colorselector.vim'          
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-surround'
 Bundle 'jeetsukumaran/vim-buffergator'
+"Bundle 'bufexplorer.zip'
+"Bundle 'fholgado/minibufexpl.vim'
 
+"-----------------
+" Fast navigation
+"-----------------
+"Bundle 'tsaleh/vim-matchit'
+"Bundle 'Lokaltog/vim-easymotion'
+
+"--------------
+" Fast editing
+"--------------
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/snipmate-snippets'
 
 " ==== python plugins ====
 Bundle 'pyflakes.vim'
 
 
 " ==== HTML plugins ====
+Bundle "jsbeautify"
 Bundle "lepture/vim-css"
 Bundle "lepture/vim-jinja"
-Bundle "mattn/zencoding-vim"
+Bundle "tpope/vim-ragtag"
 Bundle "wavded/vim-stylus"
-Bundle "lepture/vim-javascript"
+"Bundle "lepture/vim-javascript"
 
 
 " General Settings
+syntax on
+filetype on            " Enable filetype detection
+filetype indent on     " Enable filetype-specific indenting
+filetype plugin on     " Enable filetype-specific plugins
+
 set bs=2		       " allow backspacing over everything in insert mode
 set history=50		   " keep 50 lines of command line history
 set ruler	           " show the cursor position all the time
@@ -52,26 +69,26 @@ set autoread           " auto read when file is changed from outside
 set autochdir
 set nu
 set mouse=a
-
-syntax on
-filetype on            " Enable filetype detection
-filetype indent on     " Enable filetype-specific indenting
-filetype plugin on     " Enable filetype-specific plugins
-
-
+set showcmd
+set hidden              " enable switch buffer when unsave file
+set whichwrap=b,s,h,l,<,>,[,]
+set clipboard=unnamed
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
+syntax enable
+set background=dark
+set cursorline
+colorscheme desert
+
 if has("gui_running")	" GUI color and font settings
     set guifont=Osaka-Mono:h20
-    set background=dark 
     set t_Co=256          " 256 color mode
-    set cursorline        " highlight current line
-    colors desert
-    highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
+    highlight CursorLine      guibg=#1C1C1C    ctermbg=234   gui=none   cterm=none
 else
     " terminal color settings
     "colors vgod
+    highlight CursorLine     ctermbg=234   cterm=none
 endif
 
 " Keybinding
@@ -82,10 +99,15 @@ let g:mapleader=","
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
 
-nmap <leader>f :NERDTree<CR>
+nmap <silent> <leader>n :NERDTreeToggle<CR>
+" nnoremap <silent> <leader>ff :call g:Jsbeautify()<CR>
 
+vnoremap < <gv
+vnoremap > >gv
 nmap <C-tab> :bn<CR>
 imap <C-tab> <ESC>:bn<CR>i
+
+let g:ragtag_global_maps = 1 
 
 " disable sound on errors
 set noerrorbells
@@ -93,17 +115,23 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" folding settings
-set foldenable
-set foldmethod=marker
-nnoremap <space> za
+" folding settings {
+    
+    set foldenable
+    set foldmethod=syntax
+    set foldcolumn=0
+    setlocal foldlevel=1
+
+    nnoremap <space> za
+"}
+
 
 " search settings {
-set hlsearch		" search highlighting
-set incsearch		" incremental search
-set nobackup		" no *~ backup files
-set ignorecase		" ignore case when searching
-set smartcase		" ignore case if search pattern is all lowercase,case-sensitive otherwise
+    set hlsearch		" search highlighting
+    set incsearch		" incremental search
+    set nobackup		" no *~ backup files
+    set ignorecase		" ignore case when searching
+    set smartcase		" ignore case if search pattern is all lowercase,case-sensitive otherwise
 
 "}
 
@@ -112,9 +140,10 @@ set smartcase		" ignore case if search pattern is all lowercase,case-sensitive o
     set copyindent		" copy the previous indentation on autoindenting
     set smarttab		" insert tabs on the start of a line according to context
 
-    set expandtab        "replace <TAB> with spaces
+    set tabstop=4
     set softtabstop=4 
     set shiftwidth=4 
+    set expandtab        "replace <TAB> with spaces
 
     au FileType Makefile set noexpandtab
 "}      	
@@ -123,6 +152,10 @@ set smartcase		" ignore case if search pattern is all lowercase,case-sensitive o
 set laststatus=2
 
 "}
+
+" Plugins Settings
+
+
 
 "--------------------------------------------------------------------------- 
 " ENCODING SETTINGS {
