@@ -55,6 +55,12 @@ Bundle "tpope/vim-ragtag"
 Bundle "wavded/vim-stylus"
 "Bundle "lepture/vim-javascript"
 
+" Backups and swapfile
+set backup
+set backupdir=$HOME/.vim/backup/
+silent execute '!mkdir -p $HOME/.vim/backup'
+
+set noswapfile
 
 " General Settings
 syntax on
@@ -92,6 +98,12 @@ else
 endif
 
 " Keybinding
+
+" STOP using the arrow keys, Dude!
+"map <up>       <nop>
+"map <down>     <nop>
+"map <left>     <nop>
+"map <right>    <nop>
 
 map :w  :up
 map :q  :confirm q

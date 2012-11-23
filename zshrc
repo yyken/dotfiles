@@ -41,6 +41,8 @@ PATH=$PATH:$HOME/bin                # Personal binaries
 
 export PATH
 export NODE_PATH=/usr/local/lib/node
+export JAVA_HOME=`/usr/libexec/java_home`
+export GROOVY_HOME=/usr/local/Cellar/groovy/2.0.5/libexec
 
 # List directory contents after a 'cd'
 function chpwd() {
@@ -52,3 +54,4 @@ alias gk='gitk --all 2> /dev/null &'
 alias tmux="TERM=screen-256color-bce tmux"
 alias vi="mvim -v"
 alias vim="mvim -v"
+export GRAILS_HOME=/usr/local/Cellar/grails/2.1.1/libexec
