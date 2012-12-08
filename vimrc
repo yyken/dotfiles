@@ -13,8 +13,7 @@ Bundle 'gmarik/vundle'
 "--------------
 " Color Scheme
 "--------------
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tomasr/molokai'
+Bundle 'flazz/vim-colorschemes'
 
 "--------------
 " IDE features
@@ -85,7 +84,7 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 syntax enable
 set background=dark
 set cursorline
-colorscheme desert
+colorscheme molokai 
 
 if has("gui_running")	" GUI color and font settings
     set guifont=Osaka-Mono:h20
