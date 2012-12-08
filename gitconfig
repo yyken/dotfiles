@@ -50,3 +50,5 @@
     lg = log --graph --pretty='format:%Cblue%an%Creset commit at %Cgreen%ar%Creset: \n %Cred%h%Creset %C(yellow)%d%Creset %s\n' 
     type = cat-file -t
     dump = cat-file -p
+[push]
+	default = simple
