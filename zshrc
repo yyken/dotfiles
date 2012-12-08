@@ -40,9 +40,20 @@ PATH=$PATH:/usr/local/share/npm/bin # nodejs npm
 PATH=$PATH:$HOME/bin                # Personal binaries
 
 export PATH
+
+export PAGER="less -s"
+export BROWSER="$PAGER"
+export LESS_TERMCAP_mb=$'\E[01;36m'
+export LESS_TERMCAP_md=$'\E[01;36m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;33m'
+
+
 export NODE_PATH=/usr/local/lib/node
 export JAVA_HOME=`/usr/libexec/java_home`
-export GROOVY_HOME=/usr/local/Cellar/groovy/2.0.5/libexec
 
 # List directory contents after a 'cd'
 function chpwd() {
@@ -54,4 +65,7 @@ alias gk='gitk --all 2> /dev/null &'
 alias tmux="TERM=screen-256color-bce tmux"
 alias vi="mvim -v"
 alias vim="mvim -v"
-export GRAILS_HOME=/usr/local/Cellar/grails/2.1.1/libexec
+alias less="less -is"
+
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+[[ -s "/Users/kenyeh/.gvm/bin/gvm-init.sh" ]] && source "/Users/kenyeh/.gvm/bin/gvm-init.sh"
