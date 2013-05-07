@@ -88,7 +88,7 @@ set cursorcolumn
 
 if has("gui_running")	" GUI color and font settings
     set guioptions-=T
-    set guioptions+=eset guifont=Osaka-Mono:h20
+    set guioptions+=eset guifont=Source\ Code\ Pro\ Semibold\ for\ Powerline:h15
     set t_Co=256          " 256 color mode
     set guitablabel=%M\ %t
     highlight CursorLine      guibg=#1C1C1C    ctermbg=234   gui=none   cterm=none
@@ -169,8 +169,11 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-nmap <C-tab> :bn<CR>
-imap <C-tab> <ESC>:bn<CR>i
+nmap <C-Left> :bp<CR>
+nmap <C-Right> :bn<CR>
+imap <C-Left> <ESC>:bp<CR>i
+imap <C-Right> <ESC>:bn<CR>i
+nmap <Leader>d :bp<CR>:bd#<CR>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -246,9 +249,12 @@ map <leader>ss :setlocal spell!<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline
+"let g:Powerline_symbols = 'unicode'
 
-nmap <silent> <leader>n :NERDTreeToggle<CR>
 " nnoremap <silent> <leader>ff :call g:Jsbeautify()<CR>
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " syntax support
 autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
@@ -259,13 +265,14 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
 " Nerd Tree 
-"let NERDChristmasTree=0
-"let NERDTreeWinSize=30
-"let NERDTreeChDirMode=2
+nmap <silent> <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$', '\.swp$']
 let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
 let NERDTreeShowBookmarks=1
-"let NERDTreeWinPos = "right"
+let NERDTreeWinPos = "right"
+"let NERDChristmasTree=0
+"let NERDTreeWinSize=30
+"let NERDTreeChDirMode=2
 
 " NeoComplCache
 let g:neocomplcache_enable_at_startup=1
@@ -373,6 +380,19 @@ function! HasPaste()
     return ''
 endfunction
 
+" QUICKFIX WINDOW
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+    if exists("g:qfix_win") && a:forced == 0
+        cclose
+        unlet g:qfix_win
+    else
+        copen 10
+        let g:qfix_win = bufnr("$")
+    endif
+endfunction
+nnoremap <leader>q :QFix<CR>
+
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
@@ -394,3 +414,14 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+	 	\ | diffthis | wincmd p | diffthis
+
+function! s:DiffWithGITCheckedOut()
+  let filetype=&ft
+  diffthis
+  vnew | exe "%!git diff " . expand("#:p:h") . "| patch -p 1 -Rs -o /dev/stdout"
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  diffthis
+endfunction
+com! DiffGIT call s:DiffWithGITCheckedOut()
