@@ -17,25 +17,21 @@ Bundle 'flazz/vim-colorschemes'
 "------------------
 " Code Completions
 "------------------
-Bundle 'Shougo/neocomplcache.git'
-Bundle 'Shougo/neosnippet.git'
-Bundle 'honza/snipmate-snippets'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'SirVer/ultisnips'
 Bundle 'mattn/zencoding-vim'
 
 "--------------
 " IDE features
 "--------------
 Bundle 'scrooloose/nerdtree'
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/syntastic'
-Bundle 'sessionman.vim'
 Bundle 'YankRing.vim'
-Bundle 'jeetsukumaran/vim-buffergator'
-"Bundle 'bufexplorer.zip'
-"Bundle 'fholgado/minibufexpl.vim'
-"Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-fugitive'
 
 "-----------------
 " Fast navigation
@@ -58,28 +54,22 @@ Bundle 'scrooloose/nerdcommenter'
 " Syntax/Indent for language enhancement
 "----------------------------------------
 " web backend
-Bundle 'beyondwords/vim-jinja2'
-"Bundle 'digitaltoad/vim-jade'
+Bundle 'digitaltoad/vim-jade'
 
 " web front end
-Bundle 'othree/html5.vim'
 Bundle 'nono/jquery.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle "jsbeautify"
 Bundle "lepture/vim-css"
-Bundle "wavded/vim-stylus"
 "Bundle 'tpope/vim-haml'
 "Bundle 'kchmck/vim-coffee-script'
 "Bundle 'groenewege/vim-less'
 
 " markup language
-Bundle 'tpope/vim-markdown'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'tangledhelix/vim-octopress'
 
 " ==== python plugins ====
-Bundle 'pyflakes.vim'
-
-" Scheme
-"Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'wlangstroth/vim-racket'
+Bundle 'klen/python-mode'
 
 filetype on            " Enable filetype detection
