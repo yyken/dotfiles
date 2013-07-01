@@ -38,7 +38,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 PATH=/usr/X11/bin:$PATH             # X11 Stuff 
 PATH=/usr/local/share/npm/bin:$PATH # nodejs npm
-PATH=/usr/local/share/python:$PATH  # python
 PATH=/usr/local/sbin:$PATH             # X11 Stuff 
 PATH=$HOME/Projects/rpi/arm-cs-tools/bin:$PATH
 PATH=$HOME/bin:$PATH                # Personal binaries
